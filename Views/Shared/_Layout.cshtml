@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" />
+    <script src="https://kit.fontawesome.com/eb079099f0.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header class="d-flex justify-content-center py-3">
+        <div class="nav-custom">
+            <ul class="nav-custom-block nav-pills">
+                <li class="nav-item-custom"><a href="/" class="nav-link active nav-button-custom" aria-current="page">Home</a></li>
+                <li class="nav-item-custom dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarScrollingDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Rooms
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                        <li class="dropdown-item"><a href="/Room/List" class="nav-link">All Rooms</a></li>
+                        <li class="dropdown-item"><a href="/Room/List/open-space" class="nav-link">Open Space</a></li>
+                        <li class="dropdown-item"><a href="/Room/List/lounge-zone" class="nav-link">Lounge</a></li>
+                        <li class="dropdown-item"><a href="/Room/List/meeting-room" class="nav-link">Meeting</a></li>
+                        <li class="dropdown-item"><a href="/Room/List/skype-room" class="nav-link">Skype</a></li>
+                        <li class="dropdown-item"><a href="/Room/List/private-office" class="nav-link">Office</a></li>
+                        <li class="dropdown-item"><a href="/Room/List/business-suite" class="nav-link">Business Space</a></li>
+                    </ul>
+                </li>
+                @if (User.Identity.IsAuthenticated)
+                {
+                    @if (User.IsInRole("User"))
+                    {
+                        <li class="nav-item-custom"><a href="/RentCart/" class="nav-link">My Cart</a></li>                       
+                    }
+                    <li class="nav-item-custom"><a href = "/RentApplication/List" class="nav-link">Rent Applications</a></li>
+                }
+            </ul>
+            <ul class="nav-custom-absolute nav-pills">
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <li class="nav-item-custom">
+                        <i class="fa-solid fa-circle-user"></i><span> @User.Identity.Name</span>
+                    </li>
+                    <li class="nav-item-custom">
+                        <form method="post" asp-controller="User" asp-action="Logout">
+                            <input class="nav-link" type="submit" value="Вийти" />
+                        </form>
+                    </li>
+                 }
+                 else
+                 {
+                    <li class="nav-item"><a class="nav-link" href="/User/Login">Увійти</a></li>
+                 }
+            </ul>
+        </div>
+    </header>
+        <div class="container">
+            @RenderBody()
+        </div>
+        <footer class="container mt-5">
+        <p class="text-center text-muted">&copy; 2023 Company, Inc. </p>
+        </footer>
+</body>
+</html>

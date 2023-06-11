@@ -1,0 +1,23 @@
+﻿@model PlaceViewModel
+<div class="d-flex justify-content-center">
+    <div class="d-flex flex-column align-items-center">
+        <h3 class="text-center">Робочі місця</h3>
+        <form asp-action="AddToCart" method="post">
+            <div class="mb-3">
+                <label class="form-label" asp-for="rentStart"></label>
+                <div>
+                    <input asp-for="rentStart" class="form-control" />
+                    <span asp-validation-for="rentStart" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" asp-for="rentEnd"></label>
+                <div>
+                    <input asp-for="rentEnd" class="form-control" />
+                    <span asp-validation-for="rentEnd" class="text-danger"></span>
+                </div>
+            </div>
+            <input class="btn btn-outline-orange m-1" type="submit" value="Додати до кошику" />
+        </form>
+    </div>
+</div>
